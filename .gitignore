@@ -1,10 +1,48 @@
-.DS_Store
-.env
-.env.*
-!.env.example
-.venv/
-venv/
+# Python
 __pycache__/
-*.pyc
-node_modules/
-.ipynb_checkpoints/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+.venv-1/
+venv/
+env/
+
+# Generated model artefacts (regenerate locally; never commit trained models)
+*.joblib
+artifacts/
+
+# Secrets and local config
+.env
+secrets.toml
+.streamlit/secrets.toml
+
+# Authentication database (contains user credentials)
+private/users.db
+private/*.db
+
+# Raw / uncleared data (keep permission evidence private)
+data/raw/
+data/private/
+
+# Incoming batch drops and flagged review files (working files, not for Git)
+data/incoming/*.csv
+data/review/*.csv
+
+# Private source log, consent records and volunteer identity evidence
+# Never commit anything under private/ to any public or shared repository
+private/
+
+# Test and coverage output
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

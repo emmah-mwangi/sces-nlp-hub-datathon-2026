@@ -1,0 +1,6 @@
+text,label,contributor_code,source_method,language,reviewer_code,review_status,group_id
+Tala mbula lelo.,weather_query,T07-V1,original_human,ln,T07-A,independently_reviewed,
+Ngonga ezali ngonga nini?,datetime_query,T07-V2,original_human,ln,T07-A,independently_reviewed,
+Bongisa kengele na ngonga motoba.,alarm_set,T07-V3,original_human,ln,T07-A,independently_reviewed,
+,weather_query,T07-V1,original_human,ln,,pending,
+Bela ngai na 0712345678.,news_query,T07-V1,original_human,ln,,pending,

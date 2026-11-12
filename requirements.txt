@@ -1,0 +1,9 @@
+# Runtime dependencies (unchanged from starter kit v2.0)
+scikit-learn==1.7.2
+pandas>=2.2,<3
+streamlit>=1.40,<2
+joblib>=1.4,<2
+bcrypt>=4.0.0,<5
+
+# Development / testing only
+pytest>=8.0,<9

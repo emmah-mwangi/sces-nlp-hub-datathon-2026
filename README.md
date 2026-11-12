@@ -1,43 +1,66 @@
-# SCES NLP Hub Datathon 2026
+# Team 7 (Datalynk): Lingala Intent Classification
 
-## Final submissions
+Strathmore NLP Hub Datathon 2026 | Track A (intent classification)
 
-**Extended deadline: Thursday, 12 November 2026, 11:59 p.m. EAT (20:59 UTC).**
+- **Team number:** 7
+- **Team name:** Datalynk
+- **Language:** Lingala 
 
-Submit **one pull request per team**. Work in your own fork and change only `teams/team-XX/`, using your assigned team number from 01 to 24. Organisers review and merge submissions. Students do not need collaborator or write access to this central repository.
+## Team roles
+| Member | Code | Role |
+|---|---|---|
+| Caroline | T07-A | Language and documentation lead: Lingala authoring, spelling conventions, annotation guide, dataset card, quality report, reviews, error analysis |
+| Emmah | T07-B | Frontend and data-upkeep lead: Streamlit demo, Record Log and contribution.csv upkeep, README, backup recording, volunteer permissions |
+| Tatyana | T07-C | Backend and pipeline lead: repo, validate/train/evaluate, splits, final test run, frozen commit and package |
 
-1. Read [SUBMISSION_GUIDE.md](SUBMISSION_GUIDE.md).
-2. Fork this repository using the **Fork** button.
-3. In your fork, open your team folder, for example `teams/team-01/`.
-4. Replace its placeholder README with your completed team README. Add your project code and required materials inside the same folder.
-5. Open a pull request from your fork's `main` to this repository's `main`, titled **Team 01 | Final submission** (use your own number).
-6. Keep the pull-request URL as your submission receipt. You have submitted when the pull request is open; you do not have to wait for it to be merged.
+Lingala volunteers are credited by pseudonymous code (T07-V1 to V3) in the contribution statement.
 
-**A presentation/demo video is required.** Put its viewable link in your team README. Explain your idea and approach briefly, show the working demo on new input, report actual results and limitations, and identify each member's contribution. An optional hosted app link does not replace the video.
+Based on the Strathmore NLP Hub Datathon Starter Kit v2.0 (see the original instructions below).
 
-## Team folders
+---
 
-Use `teams/team-01/` through `teams/team-24/`. Keep all your team's files inside its folder. Do not edit another team's folder, the root README, templates, or `.github/`.
+# Strathmore NLP Hub Datathon starter kit v2.0
+Choose one supported track: intent, sentiment, or limited semantic parsing. See TRACKS.md, NEXT_STEPS.md, NATURAL_DATA.md and examples/. Python 3.10 or later is recommended.
 
-## Materials to include
+## Install (from this folder)
+python -m venv .venv
+# macOS/Linux:
+source .venv/bin/activate
+# Windows PowerShell instead:
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 
-- A concise team README following the [template](templates/TEAM_README.md).
-- Source code/notebooks, dependency versions, and clear install/train/evaluate/demo commands.
-- Your permitted contribution dataset and reproducible split information, or a stable accessible data link with instructions where redistribution/size prevents uploading.
-- Annotation guide, source log, data card, quality report, contribution/AI-use statement, and actual evaluation files.
-- A link to your presentation/demo video and any optional hosted demo.
-- Your original team repository URL and the **full source commit SHA** used to prepare this submission.
+Use only the activation command for your OS.
+## Practice first
+python validate.py --track intent --data data/practice_intent.csv --practice
+python train.py --track intent --data data/practice_intent.csv --practice
+python evaluate.py --track intent --data data/practice_intent.csv --practice
+python -m streamlit run app.py
 
-Do not upload credentials, private contact lists, permission evidence, `.git/`, virtual environments, caches, node_modules, large models or raw videos. Use accessible links for large artefacts and explain how judges can obtain them. Confirm that you have permission to release any included data.
+For sentiment, substitute --track sentiment and data/practice_sentiment.csv; for semantic parsing use --track semantic and data/practice_semantic.csv. Train each desired track before selecting it in the app. Artifacts live in artifacts/<track>/ so tasks do not overwrite each other.
 
-## Task and marking
+## Your contribution
+Copy data/template.csv (or semantic_template.csv) to data/contribution.csv. Use label for the class; legacy intent headers are accepted for backwards compatibility. Follow track-specific minimums. Run the same commands with --data data/contribution.csv and WITHOUT --practice. Do not count teaching fixtures as contributions.
+Each training run stores a dataset fingerprint. Evaluation rejects changed data or a mismatched track/mode; regenerate the model deliberately if you correct your dataset before freezing.
+Choose settings with development data. Freeze then evaluate test once. Accuracy and macro-F1 are printed with per-label F1 bars and saved as JSON/CSV. Semantic adds slot F1 and full-frame exact match.
+No minimum F1 is guaranteed. Practice examples are constructed, small and easier than realistic data; their scores are teaching results, not a production benchmark.
 
-The [student handbook](https://docs.google.com/document/d/1CNh4ol7j1O7ieYCteo3NnwqkcMXBerFnYcAns_2pkRI) remains the task specification. The three supported tracks are intent classification, sentiment analysis and limited semantic parsing. Existing data targets, review requirements and the 100-mark rubric still apply. Original work and useful, evidenced improvements matter.
+## Workflow
+![From reviewed data to a working demonstration](workflow.png)
 
-## Review and receipt
+## Files
+taxonomy.csv: 10 action labels, English boundaries and Kiswahili illustrations (local fluent review still needed).
+sentiment_guidelines.md: opinion labels and exclusions.
+data/: empty templates and English practice sets (100 intent,100 semantic,120 sentiment).
+validate.py: basic structural, review, source-method, duplicate and split-group checks; also checks semantic spans.
+train.py: CPU character-TF-IDF/logistic-regression baseline and majority comparator. Semantic adds a training-only surface-slot dictionary.
+evaluate.py: console scores, per_label_report.csv, test_predictions.csv and test_metrics.json. No audio or network dataset download.
+app.py: Streamlit labels, uncalibrated model probability, semantic JSON when applicable. Mobile app is an equivalent optional interface.
+templates/: blank planning, annotation, data-card, quality and contribution outlines.
+examples/: completed fictional teaching documents. Never copy their permission/evaluation claims into a real submission.
 
-Organisers check that each PR changes only one assigned team folder, includes its completed README and required materials, and has viewable evidence links. A metadata validator is supplied in `tools/` for organiser use; an automatic workflow is not enabled. Neither a check nor a merge is a mark, an award or confirmation that all task requirements were met.
+## Scope and disclosure
+Intent describes requested action; sentiment describes opinion; limited semantic parsing adds slots. Sentiment is not emotion detection; semantic baseline is not a general text-to-SQL system. The slot baseline cannot extract unknown surface values reliably. Report failures on an explicit unseen-value test subset.
+Reuse and credit this starter code. Document other datasets, models, AI tools and changes. Keep private data/permission evidence out of public GitHub. Do not open untrusted joblib files.
+Use your own GitHub repo now. A final NLP Hub repository and submission process will be announced. Deadline:11 November 2026,11:59 p.m. EAT. Do not guess a submission URL.
 
-If you correct your submission before the deadline, commit the correction to the same fork branch; the existing PR updates. After the deadline, clearly identify later changes. Organisers record the submission time and the exact PR/source commit assessed. See [MAINTAINER_GUIDE.md](MAINTAINER_GUIDE.md).
-
-Need help? Open an issue with your team number and the problem, or contact Kevin/Titus through the existing event channels before the deadline. Do not assume a separate team-repository link or a screenshot counts as the final hand-in.

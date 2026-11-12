@@ -1,0 +1,11 @@
+intent,working_definition,original_english_example,boundary,kiswahili_illustration
+weather_query,Ask about weather,Will it rain tomorrow?,Asking for news about a storm is news_query.,"Je, kutakuwa na mvua kesho?"
+datetime_query,Ask current date or time,What time is it?,Setting an alarm is alarm_set.,Ni saa ngapi sasa?
+alarm_set,Set an alarm to ring,Wake me at seven tomorrow.,Scheduling a meeting is calendar_set.,Weka kengele ya kuniamsha kesho asubuhi.
+calendar_set,Create a calendar event or scheduled reminder,Add my project meeting for Friday.,Reading existing events is calendar_query.,Ongeza mkutano wa mradi kwenye kalenda yangu.
+calendar_query,Ask about existing calendar events,What meetings do I have today?,Creating a new event is calendar_set.,Nina mikutano gani leo?
+lists_createoradd,Create a list or add items,Add bread to my shopping list.,Reading a list is lists_query.,Ongeza mkate kwenye orodha yangu ya manunuzi.
+lists_query,Read an existing list,What is on my shopping list?,Adding an item is lists_createoradd.,Kuna nini kwenye orodha yangu ya manunuzi?
+play_music,Request music playback,Play some music.,Asking who wrote a song is not a playback request.,Cheza muziki.
+news_query,Ask for news updates,Read the latest headlines.,Forecast requests are weather_query.,Nipe habari za hivi karibuni.
+qa_definition,Ask for the meaning of a word or concept,What does biodiversity mean?,General factual questions outside definitions are out of scope.,Neno bayoanuwai lina maana gani?
